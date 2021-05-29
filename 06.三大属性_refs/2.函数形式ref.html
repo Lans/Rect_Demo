@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>回调函数形式的ref</title>
+
+  <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+  <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+  <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+
+<body>
+<div id="test"></div>
+
+<script type="text/babel">
+  //ref 表示标识，可获取标签
+
+  class Demo extends React.Component {
+    click = () => {
+      const {input1} = this
+      console.log(this)
+      alert(input1.value)
+    }
+    show = () => {
+      const {input2} = this
+      console.log(this)
+      alert(input2.value)
+    }
+
+    // onBlur 失去焦点
+    //回调函数形式的ref
+    //内联函数更新状态时ref回调两次，第一次为null，第二次为实际值
+    //绑定到类方法就行了
+    render() {
+      return <div>
+        {/*<h1></h1>*/}
+        <input ref={(c) => {
+          this.input1 = c
+        }} placeholder="点击弹框"/>&nbsp;
+        <button title="点击" onClick={this.click}>点击弹框</button>
+        &nbsp;
+        <input ref={(c) => {
+          this.input2 = c
+        }} onBlur={this.show} placeholder="失去焦点弹框"/>
+      </div>
+    }
+  }
+
+  ReactDOM.render(<Demo/>, document.getElementById("test"))
+
+
+</script>
+
+</body>
+
+</html>

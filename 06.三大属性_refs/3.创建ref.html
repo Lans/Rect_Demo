@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>createApi ref</title>
+
+  <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+  <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+  <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+
+<body>
+<div id="test"></div>
+
+<script type="text/babel">
+  //ref 表示标识，可获取标签
+
+  class Demo extends React.Component {
+    click = () => {
+      const v1 = this.ref1.current.value;
+      console.log(this)
+      // alert(v1)
+      alert(this.ref1.current.value)
+    }
+    show = () => {
+      const v2= this.ref2.current
+      console.log(this)
+      alert(v2.value)
+    }
+
+    //存储ref所标识的节点，只能传一个值,自动收集标签
+    ref1 = React.createRef()
+    ref2 = React.createRef()
+
+    // onBlur 失去焦点
+    render() {
+      return <div>
+        {/*<h1></h1>*/}
+        <input ref={this.ref1} placeholder="点击弹框"/>&nbsp;
+        <button title="点击" onClick={this.click}>点击弹框</button>
+        &nbsp;
+        <input ref={this.ref2} onBlur={this.show} placeholder="失去焦点弹框"/>
+      </div>
+    }
+  }
+
+  ReactDOM.render(<Demo/>, document.getElementById("test"))
+
+
+</script>
+
+</body>
+
+</html>

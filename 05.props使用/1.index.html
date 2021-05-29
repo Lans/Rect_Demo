@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>props</title>
+
+  <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+  <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+  <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="test"></div>
+
+  <script type="text/babel">
+    class Student extends React.Component{
+        render() {
+            console.log(this)
+            const {name,age}=this.props
+            return <ul>
+              <li>姓名：{name}</li>
+              <li>年龄：{age}</li>
+              </ul>
+        }
+    }
+
+
+    const p=new Student()
+
+    //展开语法
+    const arr=[1,2,23,443]
+    console.log(...arr)
+    function sum(...nums){
+      return nums.reduce((before,current)=>{
+          return before+current
+      })
+    }
+    console.log(sum(1,2,3,4,5,6,7,8,9))
+
+
+    //构造字面对象时使用展开语法
+    let per={name:"3",age:12}
+    let per2={...per}
+    console.log(per2)
+    //合并原值
+    let per3={...per,name:"Lans",address:"武汉"}
+    console.log(per3)
+  
+    ReactDOM.render(<Student name="lans" age={18}/>,document.getElementById("test"))
+
+  
+</script>
+
+</body>
+
+</html>

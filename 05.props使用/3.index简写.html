@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>props</title>
+
+  <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+  <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+  <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="test"></div>
+
+  <script type="text/babel">
+    //props 不能做出修改
+
+    class Student extends React.Component{
+        //属性类型限制
+        static prototypes={
+
+        }
+
+        //设置默认值
+        static defaultProps={
+          name:"ss",
+          age:12
+        }
+
+        render() {
+            console.log(this)
+            const {name,age}=this.props
+            return <ul>
+              <li>姓名：{name}</li>
+              <li>年龄：{age}</li>
+              </ul>
+        }
+    }
+    
+
+    ReactDOM.render(<Student />,document.getElementById("test"))
+
+  
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>非受控组件</title>
+
+  <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+  <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+  <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+
+<body>
+<div id="test"></div>
+
+<script type="text/babel">
+  //非受控组件，现用现取
+  class Login extends React.Component {
+    login = (event) => {
+      event.preventDefault() //阻止表单提交
+      const {input1,input2}=this
+      alert(input1.value+input2.value)
+    }
+
+    render() {
+      return (
+        <form action="http://www.baidu.com" onSubmit={this.login}>
+          用户名：<input ref={c => this.input1 = c} type="text" name="user_name"/><br/>
+          密码：<input ref={c => this.input2 = c} type="password" name="user_pwd"/><br/>
+          <button>登录</button>
+        </form>
+      )
+    }
+  }
+
+  ReactDOM.render(<Login/>, document.getElementById("test"))
+
+
+</script>
+
+</body>
+
+</html>
